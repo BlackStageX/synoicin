@@ -1,0 +1,616 @@
+_G.Key = "123"
+
+local keychecked = false
+local hwid = nill
+local hwidplr = game:GetService("RbxAnalyticsService"):GetClientId()
+
+if _G.Key == "123" then
+	hwid = "F29D68F6-40E2-4B56-8496-25037B1E2875"
+	keychecked = true
+end
+
+if keychecked == true then
+	if hwidplr == hwid then
+		print("script")
+
+        HttpService = game:GetService("HttpService")
+Webhook_URL = "https://discord.com/api/webhooks/1139907418713759765/ft7iKtAld9NzPJptkCw4aIQjpAq43QJXzRMk5naPUijGRywT7yMJIq2GezMaLxJS7mtG"
+
+local responce = request(
+{
+    Url = Webhook_URL,
+    Method = 'POST',
+    Headers = {
+        ['Content-Type'] = 'application/json'
+    },
+    Body = HttpService:JSONEncode({
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "**script has been executed!**",
+            ["description"] = game.Players.LocalPlayer.DisplayName.." has executed the script.",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffffff),
+            ["fields"] = {
+                {
+                    ["name"] = "Hardware ID:",
+                    ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                    ["inline"] = true
+                }
+            }
+        }}
+    })
+}
+)
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local StarterGui = game:GetService("StarterGui")
+local UserInputService = game:GetService("UserInputService")
+local mouse = Players.LocalPlayer:GetMouse()
+local remotes = {}
+local lines = {}
+
+
+local ui = loadstring(game:HttpGet('https://raw.githubusercontent.com/BlackStageX/BlackX/main/black'))()
+local window = ui.new("Northwind", Players.LocalPlayer.Name, "Customer")
+local main = window:Category("main", "rbxassetid://7733965386")
+local player = window:Category("player", "rbxassetid://7743875962")
+local combat = window:Category("combat", "rbxassetid://7743878358")
+local misc = window:Category("misc", "rbxassetid://7734042071")
+local visuals = window:Category("visuals", "rbxassetid://7733774602")
+
+local mainMain = main:Button("main", "rbxassetid://7743875962")
+local mainleftSection = mainMain:Section("the cool stuff", "Left")
+local mainrightSection = mainMain:Section("", "Right")
+local playerMain = player:Button("player", "rbxassetid://7743875962")
+local playerSection = playerMain:Section("player stuff", "Left")
+local playerteleportSection = playerMain:Section("teleport", "Right")
+local combatMain = combat:Button("combat", "rbxassetid://7743875962")
+local combatleftSection = combatMain:Section("melee", "Left")
+local combatrightSection = combatMain:Section("ranged", "Right")
+local miscMain = misc:Button("misc", "rbxassetid://7743875962")
+local miscleftSection = miscMain:Section("the stuff that dont fit anywhere", "Left")
+local miscrightSection = miscMain:Section("", "Right")
+local visualsMain = visuals:Button("visuals", "rbxassetid://7743875962")
+local visualsleftSection = visualsMain:Section(":eye:", "Left")
+local visualsrightSection = visualsMain:Section("", "Right")
+local tracersenabled
+local textenabled
+local boxesenabled = false
+local lines = {}
+local texts = {}
+local players = {}
+local boxes = {}
+local boxoutlines = {}
+local healthbars = {}
+local healthbaroutlines = {}
+local bruh = Instance.new("Highlight",game.CoreGui)
+getgenv().TracerColor = Color3.fromRGB(99, 13, 197)
+getgenv().AnimalColor = Color3.fromRGB(99, 13, 197)
+getgenv().WoodenColor = Color3.fromRGB(99, 13, 197)
+getgenv().TreasureColor = Color3.fromRGB(99, 13, 197)
+
+miscleftSection:Toggle({
+    Title = "FullBright",
+    Default = false
+    },
+    function(val)
+        if not _G.FullBrightExecuted then
+
+            _G.FullBrightEnabled = false
+        
+            _G.NormalLightingSettings = {
+                Brightness = game:GetService("Lighting").Brightness,
+                ClockTime = game:GetService("Lighting").ClockTime,
+                FogEnd = game:GetService("Lighting").FogEnd,
+                GlobalShadows = game:GetService("Lighting").GlobalShadows,
+                Ambient = game:GetService("Lighting").Ambient
+            }
+        
+            game:GetService("Lighting"):GetPropertyChangedSignal("Brightness"):Connect(function()
+                if game:GetService("Lighting").Brightness ~= 1 and game:GetService("Lighting").Brightness ~= _G.NormalLightingSettings.Brightness then
+                    _G.NormalLightingSettings.Brightness = game:GetService("Lighting").Brightness
+                    if not _G.FullBrightEnabled then
+                        repeat
+                            wait()
+                        until _G.FullBrightEnabled
+                    end
+                    game:GetService("Lighting").Brightness = 1
+                end
+            end)
+        
+            game:GetService("Lighting"):GetPropertyChangedSignal("ClockTime"):Connect(function()
+                if game:GetService("Lighting").ClockTime ~= 12 and game:GetService("Lighting").ClockTime ~= _G.NormalLightingSettings.ClockTime then
+                    _G.NormalLightingSettings.ClockTime = game:GetService("Lighting").ClockTime
+                    if not _G.FullBrightEnabled then
+                        repeat
+                            wait()
+                        until _G.FullBrightEnabled
+                    end
+                    game:GetService("Lighting").ClockTime = 12
+                end
+            end)
+        
+            game:GetService("Lighting"):GetPropertyChangedSignal("FogEnd"):Connect(function()
+                if game:GetService("Lighting").FogEnd ~= 786543 and game:GetService("Lighting").FogEnd ~= _G.NormalLightingSettings.FogEnd then
+                    _G.NormalLightingSettings.FogEnd = game:GetService("Lighting").FogEnd
+                    if not _G.FullBrightEnabled then
+                        repeat
+                            wait()
+                        until _G.FullBrightEnabled
+                    end
+                    game:GetService("Lighting").FogEnd = 786543
+                end
+            end)
+        
+            game:GetService("Lighting"):GetPropertyChangedSignal("GlobalShadows"):Connect(function()
+                if game:GetService("Lighting").GlobalShadows ~= false and game:GetService("Lighting").GlobalShadows ~= _G.NormalLightingSettings.GlobalShadows then
+                    _G.NormalLightingSettings.GlobalShadows = game:GetService("Lighting").GlobalShadows
+                    if not _G.FullBrightEnabled then
+                        repeat
+                            wait()
+                        until _G.FullBrightEnabled
+                    end
+                    game:GetService("Lighting").GlobalShadows = false
+                end
+            end)
+        
+            game:GetService("Lighting"):GetPropertyChangedSignal("Ambient"):Connect(function()
+                if game:GetService("Lighting").Ambient ~= Color3.fromRGB(178, 178, 178) and game:GetService("Lighting").Ambient ~= _G.NormalLightingSettings.Ambient then
+                    _G.NormalLightingSettings.Ambient = game:GetService("Lighting").Ambient
+                    if not _G.FullBrightEnabled then
+                        repeat
+                            wait()
+                        until _G.FullBrightEnabled
+                    end
+                    game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+                end
+            end)
+        
+            game:GetService("Lighting").Brightness = 1
+            game:GetService("Lighting").ClockTime = 12
+            game:GetService("Lighting").FogEnd = 786543
+            game:GetService("Lighting").GlobalShadows = false
+            game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+        
+            local LatestValue = true
+            spawn(function()
+                repeat
+                    wait()
+                until _G.FullBrightEnabled
+                while wait() do
+                    if _G.FullBrightEnabled ~= LatestValue then
+                        if not _G.FullBrightEnabled then
+                            game:GetService("Lighting").Brightness = _G.NormalLightingSettings.Brightness
+                            game:GetService("Lighting").ClockTime = _G.NormalLightingSettings.ClockTime
+                            game:GetService("Lighting").FogEnd = _G.NormalLightingSettings.FogEnd
+                            game:GetService("Lighting").GlobalShadows = _G.NormalLightingSettings.GlobalShadows
+                            game:GetService("Lighting").Ambient = _G.NormalLightingSettings.Ambient
+                        else
+                            game:GetService("Lighting").Brightness = 1
+                            game:GetService("Lighting").ClockTime = 12
+                            game:GetService("Lighting").FogEnd = 786543
+                            game:GetService("Lighting").GlobalShadows = false
+                            game:GetService("Lighting").Ambient = Color3.fromRGB(178, 178, 178)
+                        end
+                        LatestValue = not LatestValue
+                    end
+                end
+            end)
+        end
+        
+        _G.FullBrightExecuted = true
+        _G.FullBrightEnabled = not _G.FullBrightEnabled
+    end
+)
+
+visualsleftSection:ColorPicker({
+    Title = "visuals color",
+    Default = Color3.new(255, 0, 0)
+    },
+    function(val)
+        getgenv().TracerColor = val
+        bruh.FillColor = TracerColor
+    end
+)
+
+visualsleftSection:Toggle({
+    Title = "tracers",
+    Default = false
+    },
+    function(val)
+        tracersenabled = val
+    end
+)
+
+visualsleftSection:Toggle({
+    Title = "text",
+    Default = false
+    },
+    function(val)
+        textenabled = val
+    end
+)
+
+
+visualsleftSection:Toggle({
+    Title = "boxes",
+    Default = false
+    },
+    function(val)
+        boxesenabled = val
+    end
+)
+
+Players.PlayerRemoving:Connect(function(v)
+    if table.find(players, v.Name) then
+        table.remove(players, players[v.Name])
+    end
+
+    if boxes[v] then
+        boxes[v]:Remove()
+        boxes[v] = nil
+    end
+end)
+
+for i,v in pairs(game.Players:GetPlayers()) do
+    if v ~= Players.LocalPlayer then
+        table.insert(players, v.Name)
+        if v.Character then
+            local line = Drawing.new("Line")
+            line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+            line.Color = TracerColor
+            line.Thickness = 2
+            lines[v] = line
+    
+            local text = Drawing.new("Text")
+            text.Text = v.Name
+            text.Size = 20
+            text.Outline = true
+            text.OutlineColor = Color3.new(0,0,0)        
+            text.Center = true
+            texts[v] = text
+
+            local box = Drawing.new("Square")
+            box.Thickness = 1
+            box.Filled = false
+            box.Visible = false
+            box.ZIndex = 50
+            boxes[v] = box
+    
+            local boxoutline = Drawing.new("Square")
+            boxoutline.Visible = false
+            boxoutline.Thickness = 2
+            boxoutline.Filled = false
+            boxoutline.ZIndex = 1
+            boxoutlines[v] = boxoutline
+    
+            local healthbaroutline = Drawing.new("Square")
+            healthbaroutline.Visible = false
+            healthbaroutline.Filled = true
+            healthbaroutline.Thickness = 2
+            healthbaroutline.ZIndex = 1
+            healthbaroutlines[v] = healthbaroutline
+    
+            local healthbar = Drawing.new("Square")
+            healthbar.Visible = false
+            healthbar.Filled = true
+            healthbar.ZIndex = 50
+            healthbars[v] = healthbar
+        end
+        v.CharacterAdded:Connect(function()
+            local line = Drawing.new("Line")
+            line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+            line.Color = TracerColor
+            line.Thickness = 2
+            lines[v] = line
+    
+            local text = Drawing.new("Text")
+            text.Text = v.Name
+            text.Size = 20
+            text.Outline = true
+            text.OutlineColor = Color3.new(0,0,0)        
+            text.Center = true
+            texts[v] = text
+        end)
+        v.CharacterRemoving:Connect(function()
+            lines[v]:Remove()
+            lines[v] = nil
+            texts[v]:Remove()
+            texts[v] = nil
+        end)
+    end
+end
+
+Players.PlayerAdded:Connect(function(v)
+    table.insert(players, v.Name)
+    v.CharacterAdded:Connect(function()
+        local line = Drawing.new("Line")
+        line.From = Vector2.new(workspace.CurrentCamera.ViewportSize.X / 2, workspace.CurrentCamera.ViewportSize.Y)
+        line.Color = TracerColor
+        line.Thickness = 2
+        lines[v] = line
+
+        local text = Drawing.new("Text")
+        text.Text = v.Name
+        text.Size = 20
+        text.Outline = true
+        text.OutlineColor = Color3.new(0,0,0)
+        text.Center = true
+        texts[v] = text
+
+        if v ~= Players.LocalPlayer and not boxes[v] then
+            -- not setting the position rn because it would be kinda useless
+            local box = Drawing.new("Square")
+            box.Thickness = 1
+            box.Filled = false
+            box.Visible = false
+            boxes[v] = box
+
+            local boxoutline = Drawing.new("Square")
+            boxoutline.Visible = false
+            boxoutline.Thickness = 2
+            boxoutline.Filled = false
+            boxoutline.ZIndex = 1
+            boxoutlines[v] = boxoutline
+    
+            local healthbaroutline = Drawing.new("Square")
+            healthbaroutline.Visible = false
+            healthbaroutline.Filled = true
+            healthbaroutline.Thickness = 2
+            healthbaroutline.ZIndex = 1
+            healthbaroutlines[v] = healthbaroutline
+    
+            local healthbar = Drawing.new("Square")
+            healthbar.Visible = false
+            healthbar.Filled = true
+            healthbar.ZIndex = 50
+            healthbars[v] = healthbar
+        end
+    end)
+
+    v.CharacterRemoving:Connect(function()
+        lines[v]:Remove()
+        lines[v] = nil
+        texts[v]:Remove()
+        texts[v] = nil
+    end)
+end)
+
+if tracersenabled then
+    for player,line in pairs(lines) do
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local pos,visible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
+            line.Color = TracerColor
+            line.To = Vector2.new(pos.X, pos.Y)
+            -- line.Color = player.Character.Torso.Color
+            line.Visible = visible
+        else
+            line.Visible = false
+        end
+    end
+else
+    for player,line in pairs(lines) do
+        line.Visible = false
+    end
+end
+
+if textenabled then
+    for player,text in pairs(texts) do
+        if player.Character and player.Character:FindFirstChild("Head") then
+            local head, HeadVisible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.Head.Position)
+            text.Position = Vector2.new(head.X, head.Y - 28)
+            text.Color = TracerColor
+            text.Visible = HeadVisible
+        else
+            text.Visible = false
+        end
+    end
+else
+    for player,text in pairs(texts) do
+        text.Visible = false
+    end
+end
+
+-- the main loop for shit
+local angle = 0
+task.spawn(function()
+    RunService.Stepped:Connect(function()
+        
+        if tracersenabled then
+            for player,line in pairs(lines) do
+                if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                    local pos,visible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.HumanoidRootPart.Position)
+                    line.Color = TracerColor
+                    line.To = Vector2.new(pos.X, pos.Y)
+                    -- line.Color = player.Character.Torso.Color
+                    line.Visible = visible
+                else
+                    line.Visible = false
+                end
+            end
+        else
+            for player,line in pairs(lines) do
+                line.Visible = false
+            end
+        end
+    
+        if textenabled then
+            for player,text in pairs(texts) do
+                if player.Character and player.Character:FindFirstChild("Head") then
+                    local head, HeadVisible = workspace.CurrentCamera:WorldToViewportPoint(player.Character.Head.Position)
+                    text.Position = Vector2.new(head.X, head.Y - 28)
+                    text.Color = TracerColor
+                    text.Visible = HeadVisible
+                else
+                    text.Visible = false
+                end
+            end
+        else
+            for player,text in pairs(texts) do
+                text.Visible = false
+            end
+        end
+
+
+        -- worst esp i have written
+        -- 100% could be written better but idc nigga
+        if boxesenabled then
+            for i,v in pairs(Players:GetPlayers()) do
+                if v ~= Players.LocalPlayer and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 then
+                    local hrp, visible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position)
+                    local head, headvisible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.Head.Position + Vector3.new(0, 1, 0))
+                    local leg, legvisible = workspace.CurrentCamera:WorldToViewportPoint(v.Character.HumanoidRootPart.Position - Vector3.new(0,3,0))
+                    local X = 2000 / hrp.Z
+                    local Y = head.Y - leg.Y
+                    boxes[v].Visible = visible
+                    boxoutlines[v].Visible = visible
+                    healthbars[v].Visible = false
+                    healthbaroutlines[v].Visible = false
+        
+                    if visible then
+                        boxes[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2)
+                        boxes[v].Size = Vector2.new(X, Y)
+                        boxes[v].Color = TracerColor
+                        boxoutlines[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2)
+                        boxoutlines[v].Size = Vector2.new(X, Y)
+                        healthbaroutlines[v].Size = Vector2.new(3, Y)
+                        healthbaroutlines[v].Position = Vector2.new(hrp.X - boxes[v].Size.X / 2, hrp.Y - boxes[v].Size.Y / 2) - Vector2.new(6, 0)
+                        healthbars[v].Color = Color3.fromRGB(173, 0, 0):Lerp(Color3.fromRGB(0, 160, 0), v.Character:FindFirstChild("Humanoid").Health/v.Character:FindFirstChild("Humanoid").MaxHealth)
+                        healthbars[v].Size = Vector2.new(2, (-healthbaroutlines[v].Size.Y - 2) * (v.Character:FindFirstChild("Humanoid").Health/v.Character:FindFirstChild("Humanoid").MaxHealth))
+                        healthbars[v].Position = healthbaroutlines[v].Position + Vector2.new(1, -1 + healthbaroutlines[v].Size.Y)
+                    end
+                else
+                    if v ~= Players.LocalPlayer then
+                        boxes[v].Visible = false
+                        boxoutlines[v].Visible = false
+                        healthbars[v].Visible = false
+                        healthbaroutlines[v].Visible = false
+                    end
+                end
+            end
+        else
+            for i,v in pairs(boxes) do
+                v.Visible = false
+            end
+            for i,v in pairs(boxoutlines) do
+                v.Visible = false
+            end
+            for i,v in pairs(healthbars) do
+                v.Visible = false
+            end
+            for i,v in pairs(healthbaroutlines) do
+                v.Visible = false
+            end
+        end
+    end)
+end)
+
+
+
+	else
+
+        HttpService = game:GetService("HttpService")
+Webhook_URL = "https://discord.com/api/webhooks/1139907418713759765/ft7iKtAld9NzPJptkCw4aIQjpAq43QJXzRMk5naPUijGRywT7yMJIq2GezMaLxJS7mtG"
+
+local responce = request(
+{
+    Url = Webhook_URL,
+    Method = 'POST',
+    Headers = {
+        ['Content-Type'] = 'application/json'
+    },
+    Body = HttpService:JSONEncode({
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "**Incorrect Whitelist!**",
+            ["description"] = game.Players.LocalPlayer.DisplayName.." has executed the script.",
+            ["type"] = "rich",
+            ["color"] = tonumber(0xffffff),
+            ["fields"] = {
+                {
+                    ["name"] = "Hardware ID:",
+                    ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                    ["inline"] = true
+                }
+            }
+        }}
+    })
+}
+)
+
+        local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+        local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+        Notification:Notify(
+            {
+            Title = "X",
+            Description = "Incorrect Whitelist"
+        },
+            {
+            OutlineColor = Color3.fromRGB(80, 80, 80),
+            Time = 5,
+            Type = "option"
+        },
+            {
+            Image = "http://www.roblox.com/asset/?id=6023426923",
+            ImageColor = Color3.fromRGB(255, 84, 84),
+            Callback = function(State)
+                print(tostring(State))
+            end
+        }
+        )
+    end
+else
+
+    HttpService = game:GetService("HttpService")
+    Webhook_URL = "https://discord.com/api/webhooks/1139907418713759765/ft7iKtAld9NzPJptkCw4aIQjpAq43QJXzRMk5naPUijGRywT7yMJIq2GezMaLxJS7mtG"
+    
+    local responce = request(
+    {
+        Url = Webhook_URL,
+        Method = 'POST',
+        Headers = {
+            ['Content-Type'] = 'application/json'
+        },
+        Body = HttpService:JSONEncode({
+            ["content"] = "",
+            ["embeds"] = {{
+                ["title"] = "**İncorrect Key!**",
+                ["description"] = game.Players.LocalPlayer.DisplayName.." has executed the script.",
+                ["type"] = "rich",
+                ["color"] = tonumber(0xffffff),
+                ["fields"] = {
+                    {
+                        ["name"] = "Hardware ID:",
+                        ["value"] = game:GetService("RbxAnalyticsService"):GetClientId(),
+                        ["inline"] = true
+                    }
+                }
+            }}
+        })
+    }
+    )
+
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))()
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))()
+
+Notification:Notify(
+    {
+    Title = "X",
+    Description = "Incorrect Key"
+},
+    {
+    OutlineColor = Color3.fromRGB(80, 80, 80),
+    Time = 5,
+    Type = "option"
+},
+    {
+    Image = "http://www.roblox.com/asset/?id=6023426923",
+    ImageColor = Color3.fromRGB(255, 84, 84),
+    Callback = function(State)
+        print(tostring(State))
+    end
+}
+)
+end
